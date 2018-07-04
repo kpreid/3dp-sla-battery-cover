@@ -2,10 +2,10 @@
 inside_width = 65;
 
 // Size of the cover in the direction the wires will come out (towards the middle of the battery), in millimeters. Non-critical.
-inside_length = 50;
+inside_length = 45;
 
 // Size of the cover vertically (should be less than the height of the battery), in millimeters.
-inside_height = 30;
+inside_height = 20;
 
 // Amount of vertical space to allow for the wires and terminals, in millimeters.
 wiring_height = 10;
@@ -30,28 +30,37 @@ module main() {
             hull() {
                 // Main cap box
                 translate([-cover_thickness, -cover_thickness, -inside_height])
-                cube([inside_width + cover_thickness * 2, inside_length + cover_thickness * 2, inside_height +
+                cube([inside_width + cover_thickness * 2, inside_length + cover_thickness, inside_height +
      cover_thickness]);
                 
                 // Cover above terminals
-                translate([terminal_edge, terminal_edge, wiring_height])
-                cube([inside_width - terminal_edge * 2, inside_length - terminal_edge * 2, cover_thickness]);
+                translate([terminal_edge - cover_thickness, terminal_edge - cover_thickness, wiring_height])
+                cube([inside_width - terminal_edge * 2 + cover_thickness * 2, inside_length - terminal_edge * 2 + cover_thickness, cover_thickness]);
             }
             
             // Corner rounding
-            scale([1, inside_length, inside_height])
-            rotate([0, 90, 0])
-            cylinder(r=1, h=10000, center=true, $fn = 20);
-
+            union() {
+                scale([1, inside_length, inside_height])
+                rotate([0, 90, 0])
+                cylinder(r=1, h=1000, center=true, $fn = 20);
+                
+                translate([-500, 0, 0]) 
+                cube([1000, inside_length, 1000]);
+            }
         }
         
         battery_model();
+        
+        // Interior space for terminals/wiring
+        translate([-inside_width / 2 + terminal_edge, terminal_edge, -epsilon])
+        cube([inside_width - terminal_edge * 2, 1000, wiring_height + epsilon]);
+        
     }
     
     %battery_model();
 }
 
 module battery_model() {
-    translate([-inside_width / 2, 0, -inside_height * 2])
-    cube([inside_width, inside_length * 2, inside_height * 2]);
+    translate([-inside_width / 2, 0, -inside_height * 4])
+    cube([inside_width, inside_length * 3, inside_height * 4]);
 }
