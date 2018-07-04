@@ -16,11 +16,14 @@ terminal_edge = 4;
 // Distance from the terminal end of the battery to the inside edge of the terminals, in millimeters. Used to set the position of the strap slot.
 terminal_inner = 15;
 
-cover_thickness = 1.29;
-
+// Width of the slot for the strap you must supply to wrap around the cover and battery.
 strap_slot_width = 23;
 
+// Height (thickness) of the slot for the strap you must supply to wrap around the cover and battery.
 strap_slot_height = 4;
+
+// Thickness of flat parts of the cover, in millimeters.
+cover_thickness = 1.29;
 
 /* [Hidden] */
 
