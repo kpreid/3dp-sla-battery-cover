@@ -12,6 +12,10 @@ wiring_height = 10;
 
 cover_thickness = 1.29;
 
+strap_slot_width = 23;
+
+strap_slot_height = 4;
+
 /* [Hidden] */
 
 // Closest approach of any terminal (with fastened connector) to the edges of the top of the battery. Used to set the lip around the top of the cap.
@@ -55,6 +59,9 @@ module main() {
         translate([-inside_width / 2 + terminal_edge, terminal_edge, -epsilon])
         cube([inside_width - terminal_edge * 2, 1000, wiring_height + epsilon]);
         
+        // Tie-down strap
+        translate([-500, inside_length - cover_thickness * 2 - strap_slot_width, 0])
+        cube([1000, strap_slot_width, strap_slot_height]);
     }
     
     %battery_model();
