@@ -25,6 +25,7 @@ strap_slot_height = 4;
 /* [Hidden] */
 
 epsilon = 0.01;
+outer_width = inside_width + cover_thickness * 2;
 
 
 main();
@@ -37,7 +38,7 @@ module main() {
             hull() {
                 // Main cap box
                 translate([-cover_thickness, -cover_thickness, -inside_height])
-                cube([inside_width + cover_thickness * 2, inside_length + cover_thickness, inside_height +
+                cube([outer_width, inside_length + cover_thickness, inside_height +
      cover_thickness]);
                 
                 // Cover above terminals
@@ -49,10 +50,10 @@ module main() {
             union() {
                 scale([1, inside_length, inside_height])
                 rotate([0, 90, 0])
-                cylinder(r=1, h=1000, center=true, $fn = 20);
+                cylinder(r=1, h=outer_width, center=true, $fn = 20);
                 
-                translate([-500, 0, 0]) 
-                cube([1000, inside_length, 1000]);
+                translate([-outer_width / 2, 0, 0]) 
+                cube([outer_width, inside_length, inside_height]);
             }
         }
         
@@ -60,11 +61,11 @@ module main() {
         
         // Interior space for terminals/wiring
         translate([-inside_width / 2 + terminal_edge, terminal_edge, -epsilon])
-        cube([inside_width - terminal_edge * 2, 1000, wiring_height + epsilon]);
+        cube([inside_width - terminal_edge * 2, inside_length + epsilon, wiring_height + epsilon]);
         
         // Tie-down strap
-        translate([-500, terminal_inner, 0])
-        cube([1000, strap_slot_width, strap_slot_height]);
+        translate([-(outer_width + epsilon * 2) / 2, terminal_inner, 0])
+        cube([outer_width + epsilon * 2, strap_slot_width, strap_slot_height]);
     }
     
     %battery_model();
