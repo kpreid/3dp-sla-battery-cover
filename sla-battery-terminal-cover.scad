@@ -1,3 +1,5 @@
+/* [Dimensions] */
+
 // Size of the battery in the direction parallel to the pair of terminals, in millimeters. Usually the smallest dimension.
 inside_width = 65;
 
@@ -29,11 +31,14 @@ cover_thickness = 1.29;
 
 epsilon = 0.01;
 outer_width = inside_width + cover_thickness * 2;
+preview_tab = "";  // Customizer magic variable -- will be changed only if we are in preview mode
 
 // Ensure we don't make an open-ended slot
 actual_inside_length = max(inside_length, terminal_inner + strap_slot_width + cover_thickness * 2);
 
 
+// Flip for printing.
+rotate([0, preview_tab == "" ? 180 : 0, 0])
 main();
 
 
