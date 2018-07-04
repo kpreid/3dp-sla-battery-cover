@@ -10,6 +10,12 @@ inside_height = 20;
 // Amount of vertical space to allow for the wires and terminals, in millimeters.
 wiring_height = 10;
 
+// Closest approach of any terminal (with fastened connector) to the edges of the top of the battery, in millimeters. Used to set the lip around the top of the cap.
+terminal_edge = 4;
+
+// Distance from the terminal end of the battery to the inside edge of the terminals, in millimeters. Used to set the position of the strap slot.
+terminal_inner = 15;
+
 cover_thickness = 1.29;
 
 strap_slot_width = 23;
@@ -17,9 +23,6 @@ strap_slot_width = 23;
 strap_slot_height = 4;
 
 /* [Hidden] */
-
-// Closest approach of any terminal (with fastened connector) to the edges of the top of the battery. Used to set the lip around the top of the cap.
-terminal_edge = 4;
 
 epsilon = 0.01;
 
@@ -60,7 +63,7 @@ module main() {
         cube([inside_width - terminal_edge * 2, 1000, wiring_height + epsilon]);
         
         // Tie-down strap
-        translate([-500, inside_length - cover_thickness * 2 - strap_slot_width, 0])
+        translate([-500, terminal_inner, 0])
         cube([1000, strap_slot_width, strap_slot_height]);
     }
     
