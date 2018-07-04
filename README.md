@@ -1,12 +1,16 @@
-A cover for the terminals of small SLA batteries with "faston" terminals on one end, to protect against short circuits from casual contact with metal objects.
+A cover for the terminals of small SLA (sealed lead-acid) batteries which have "faston" terminals on one end, to protect against short circuits from casual contact with metal objects.
+
+This design is not weatherproof, nor has it been designed or tested against impacts that might break the plastic.
 
 # Usage
 
-To hold the cover in place a thin, preferably non-conducting, strap is required.
+To hold the cover in place a thin, non-conductive strap is required.
 
-1. Measure your battery and strap as specified in the comments and print the cover.
-2. Wire the battery and put the cover over the wires.
-3. Thread the strap through the slots, under the wires, and around the battery.
+1. Measure your battery and strap as specified in the comments.
+2. Print the cover.
+3. Wire the battery.
+4. Fit the cover over the wires.
+5. Thread the strap through the slots, under the wires, and around the battery.
 
 # License
 
